@@ -26,9 +26,9 @@ function measureExecutionTimeAndMemoryUse(fn: () => void): { timeTakenMs: number
 }
 
 /**
- *
- * @param count
- * @param baseType
+ * Function to generate test minerals
+ * @param count Number of minerals to generate
+ * @param baseType Type of produced mineral
  */
 function generateTestMinerals(count: number, baseType: string = 'tin'): Mineral[] {
 	return Array.from({length: count}, (_, i) => ({
@@ -40,25 +40,35 @@ function generateTestMinerals(count: number, baseType: string = 'tin'): Mineral[
 
 /**
  * Test Runner
+ * @param testInputs Test inputs
  * @param testConfig Test configuration
  */
 export function runTest(
-		testConfig: {
+		testInputs: {
 			targetIngots: number,
 			minerals?: MineralWithQuantity[],
-			mineralVariants: number,
+			mineralVariants?: number,
 			mineralQuantity?: number,
 			alloy: Alloy,
+		},
+		testConfig: {
+			success?: boolean,
+			expectedMessage?: string,
 			acceptableTimeMsOverride?: number,
 			acceptableMemMbOverride?: number,
-		}
+		} = {}
 ) {
 	const {
 		targetIngots,
 		minerals,
 		mineralVariants,
-		mineralQuantity = 50,
+		mineralQuantity,
 		alloy,
+	} = testInputs;
+
+	const {
+		success = true,
+		expectedMessage,
 		acceptableTimeMsOverride = ACCEPTABLE_TIME_MS,
 		acceptableMemMbOverride = ACCEPTABLE_MEM_MB
 	} = testConfig;
@@ -66,14 +76,18 @@ export function runTest(
 	const targetMb = targetIngots * 144;
 
 	// Generate minerals with mixed types if needed
+	if (!(minerals || (mineralVariants && mineralQuantity))) {
+		throw new Error("Pre-defined minerals or number of variants with quantities need to be defined for runner!")
+	}
+
 	const testMinerals = minerals ?? [
-		...generateTestMinerals(mineralVariants, 'tin').map(m => ({
+		...generateTestMinerals(mineralVariants as number, 'tin').map(m => ({
 			mineral: m,
-			quantity: mineralQuantity
+			quantity: mineralQuantity as number
 		})),
-		...generateTestMinerals(mineralVariants, 'copper').map(m => ({
+		...generateTestMinerals(mineralVariants as number, 'copper').map(m => ({
 			mineral: m,
-			quantity: mineralQuantity
+			quantity: mineralQuantity as number
 		}))
 	];
 
@@ -89,8 +103,9 @@ export function runTest(
 	}
 
 	result = result as AlloyProductionResult;
-	expect(result.success).toBe(true);
-	expect(result.outputMb).toBe(targetMb);
+	expect(result.success).toBe(success);
+	expect(expectedMessage == undefined) || expect(result.message).toBe(expectedMessage)
+	success && expect(result.outputMb).toBe(targetMb);
 
 	console.log(`Performance Metrics:
   Target: ${targetIngots} ingots

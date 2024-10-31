@@ -1,4 +1,4 @@
-import {calculateAlloy, MineralWithQuantity} from "@/app/functions/algorithm";
+import {MineralWithQuantity} from "@/app/functions/algorithm";
 import {Alloy} from "@/app/types";
 import {runTest} from "@test/app/functions/runner";
 
@@ -81,7 +81,6 @@ describe('calculateAlloy algorithm', () => {
 			it(`${name}`, () => {
 				runTest({
 					        targetIngots,
-					        mineralVariants: minerals.length,
 					        alloy: bronzeAlloy,
 					        minerals
 				        });
@@ -92,10 +91,15 @@ describe('calculateAlloy algorithm', () => {
 	describe('fail cases', () => {
 		failureCases.forEach(({ name, minerals, expectedMessage }) => {
 			it(`${name}`, () => {
-				const result = calculateAlloy(432, bronzeAlloy, minerals);
-
-				expect(result.success).toBe(false);
-				expect(result.message).toContain(expectedMessage);
+				runTest({
+									targetIngots: 3,
+									alloy: bronzeAlloy,
+					        minerals
+				        },
+				        {
+									success: false,
+					        expectedMessage: expectedMessage,
+				        });
 			});
 		});
 	});
