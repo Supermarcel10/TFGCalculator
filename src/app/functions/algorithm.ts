@@ -340,7 +340,7 @@ function findValidCombinationBatched(
 
 		if (batchResult && batchResult.success) {
 			const scale = calculateViableBatchScale(batchResult, availableMinerals);
-			const scaledBatchResult = scaleBatch(batchResult, scale);
+			const scaledBatchResult = scale > 1 ? scaleBatch(batchResult, scale) : batchResult;
 
 			batchResults.push(scaledBatchResult);
 			remainingMb -= scaledBatchResult.outputMb;
