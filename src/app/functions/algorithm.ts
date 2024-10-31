@@ -205,11 +205,6 @@ function calculateSingleBatch(
 		// Get all possible combinations for this component
 		const componentCombinations: MineralWithQuantity[][] = [];
 
-		// Sort minerals by yield for efficiency
-		const sortedMinerals = [...minerals].sort(
-				(a, b) => b.mineral.yield - a.mineral.yield
-		);
-
 		// Generate combinations iteratively
 		function generateComponentCombinations() {
 			const stack: Array<{
@@ -231,11 +226,11 @@ function calculateSingleBatch(
 				}
 
 				// If we've processed all minerals or exceeded max, continue
-				if (current.index >= sortedMinerals.length || current.mb > maxMb) {
+				if (current.index >= minerals.length || current.mb > maxMb) {
 					continue;
 				}
 
-				const mineral = sortedMinerals[current.index];
+				const mineral = minerals[current.index];
 
 				// Try using different quantities of this mineral
 				for (let qty = 0; qty <= mineral.quantity; qty++) {
