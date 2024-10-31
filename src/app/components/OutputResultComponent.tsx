@@ -1,3 +1,4 @@
+import {ErrorComponent} from "@/app/components/ErrorComponent";
 import {AlloyProductionResult} from "@/app/functions/algorithm";
 import React from "react";
 
@@ -13,19 +14,24 @@ interface OutputResultProps {
 export function OutputResultComponent({output, mbPerIngot} : Readonly<OutputResultProps>) {
 	if (!output) return;
 
-	const success = output.success;
+	const innerElement = GetInnerOutput(output, mbPerIngot);
+	if (!innerElement) {
+		return (
+				<ErrorComponent error={"Unexpected output: Required materials not received!"}/>
+		)
+	}
+
 	return (
-			<div className={`rounded-lg shadow p-6 ${success ? successFormatting : failureFormatting}`}>
+			<div className={`rounded-lg shadow p-6 ${output.success ? successFormatting : failureFormatting}`}>
 				<h2 className="text-xl text-center font-bold mb-4">OUTPUT</h2>
-				{GetInnerOutput(output, mbPerIngot)}
+				{innerElement}
 			</div>
 	)
 }
 
-function GetInnerOutput(output : AlloyProductionResult, mbPerIngot : number) {
-	const success = output.success;
-
-	if (!success) return (<p className="text-lg text-center">{output.message}!</p>)
+function GetInnerOutput(output : AlloyProductionResult, mbPerIngot : number) : React.JSX.Element | null {
+	if (!output.success) return (<p className="text-lg text-center">{output.message}!</p>)
+	if (output.usedMinerals.length == 0) return null;
 
 	return (
 			<div>
