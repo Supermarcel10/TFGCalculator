@@ -1,6 +1,5 @@
 import {Alloy, AlloyComponent, Mineral} from "@/app/types";
 
-
 export interface MineralWithQuantity {
 	mineral: Mineral;
 	quantity: number;
@@ -13,147 +12,156 @@ export interface AlloyProductionResult {
 	message?: string;
 }
 
-const generateReverseFibonacci = (max: number) : number[] => {
-	if (max <= 0) return [];
-
-	const sequence: number[] = [];
-
-	let next = 1;
-	let prev = 1;
-
-	for (let t = 1; t <= max; t = next + prev) {
-		sequence.push(t);
-		next = prev;
-		prev = t;
-	}
-
-	return sequence.reverse();
-};
-
 const INGOT_SIZE = 144;
 const MAX_BATCH_INGOTS = 8;
 const MAX_BATCH_MB = MAX_BATCH_INGOTS * INGOT_SIZE;
+
+/**
+ * Generates a reverse Fibonacci sequence up to a maximum value
+ * @param max The maximum value for generating the Fibonacci sequence
+ * @returns An array of Fibonacci numbers in reverse order
+ */
+const generateReverseFibonacci = (max: number): number[] => {
+	if (max <= 0) return [];
+	const sequence: number[] = [];
+	let [next, prev] = [1, 1];
+	for (let t = 1; t <= max; t = next + prev) {
+		sequence.push(t);
+		[next, prev] = [prev, t];
+	}
+	return sequence.reverse();
+};
+
 const BATCH_SIZE_FIBONACCI_SEQ = generateReverseFibonacci(MAX_BATCH_INGOTS);
 
 /**
  * Groups minerals by their production type, and sorts them from the highest yielding.
  * @param availableMinerals All available minerals.
  */
-function groupAndSortMinerals(availableMinerals: MineralWithQuantity[]): Map<string, MineralWithQuantity[]> {
+const groupAndSortMinerals = (availableMinerals: MineralWithQuantity[]): Map<string, MineralWithQuantity[]> => {
 	const mineralsByType = new Map<string, MineralWithQuantity[]>();
-
 	for (const mineralWithQty of availableMinerals) {
 		const producedMineral = mineralWithQty.mineral.produces.toLowerCase();
 		const typeGroup = mineralsByType.get(producedMineral) || [];
-		const insertIndex = typeGroup.findIndex(item =>
-				                                        item.mineral.yield < mineralWithQty.mineral.yield);
+		const insertIndex = typeGroup.findIndex(item => item.mineral.yield < mineralWithQty.mineral.yield);
 
-		if (insertIndex === -1) {
-			typeGroup.push(mineralWithQty);
-		} else {
-			typeGroup.splice(insertIndex, 0, mineralWithQty);
-		}
+		insertIndex === -1
+		? typeGroup.push(mineralWithQty)
+		: typeGroup.splice(insertIndex, 0, mineralWithQty);
 
 		mineralsByType.set(producedMineral, typeGroup);
 	}
-
 	return mineralsByType;
-}
+};
 
 /**
- * Calculate the total available mB for each mineral production type.
- * @param mineralsByType Grouped minerals by their production type.
+ * Calculates the total available material in millibuckets for each mineral type
+ * @param mineralsByType Grouped minerals by production type
+ * @returns A map of total available millibuckets for each mineral type
  */
-function calculateAvailableMbByType(mineralsByType : Map<string, MineralWithQuantity[]>) : Map<string, number> {
+const calculateAvailableMbByType = (mineralsByType: Map<string, MineralWithQuantity[]>): Map<string, number> => {
 	const totalAvailableByType = new Map<string, number>();
-
-	mineralsByType.forEach((minerals: MineralWithQuantity[], type: string) => {
-		const total = minerals.reduce(
-				(sum: number, m: MineralWithQuantity): number => sum + (m.mineral.yield * m.quantity), 0
-		);
-
+	mineralsByType.forEach((minerals, type) => {
+		const total = minerals.reduce((sum, m) => sum + (m.mineral.yield * m.quantity), 0);
 		totalAvailableByType.set(type, total);
 	});
-
 	return totalAvailableByType;
-}
+};
 
-function updateAvailableMinerals(
+/**
+ * Updates the available minerals after using some minerals
+ * @param currentMinerals Current list of available minerals
+ * @param usedMinerals Minerals that have been used
+ * @returns Updated list of available minerals
+ */
+const updateAvailableMinerals = (
 		currentMinerals: MineralWithQuantity[],
 		usedMinerals: MineralWithQuantity[]
-): MineralWithQuantity[] {
-	const updatedMinerals = new Map<string, MineralWithQuantity>();
+): MineralWithQuantity[] => {
+	const updatedMinerals = new Map(currentMinerals.map(m => [m.mineral.name, {...m}]));
 
-	// Initialize with current minerals
-	currentMinerals.forEach(m => {
-		updatedMinerals.set(m.mineral.name, {...m});
-	});
-
-	// Subtract used minerals
 	usedMinerals.forEach(used => {
 		const current = updatedMinerals.get(used.mineral.name);
 		if (current) {
 			current.quantity -= used.quantity;
-			if (current.quantity <= 0) {
-				updatedMinerals.delete(used.mineral.name);
-			}
+			if (current.quantity <= 0) updatedMinerals.delete(used.mineral.name);
 		}
 	});
 
 	return Array.from(updatedMinerals.values());
-}
+};
 
-function consolidateUsedMinerals(minerals: MineralWithQuantity[]): MineralWithQuantity[] {
+/**
+ * Consolidates used minerals, combining duplicates
+ * @param minerals List of minerals to consolidate
+ * @returns Consolidated list of minerals
+ */
+const consolidateUsedMinerals = (minerals: MineralWithQuantity[]): MineralWithQuantity[] => {
 	const consolidated = new Map<string, MineralWithQuantity>();
-
 	minerals.forEach(m => {
 		const key = m.mineral.name;
-		if (consolidated.has(key)) {
-			consolidated.get(key)!.quantity += m.quantity;
-		} else {
-			consolidated.set(key, {...m});
-		}
+		consolidated.set(key, consolidated.has(key)
+		                      ? {...m, quantity: consolidated.get(key)!.quantity + m.quantity}
+		                      : {...m}
+		);
 	});
-
 	return Array.from(consolidated.values());
-}
+};
 
-function getNextBatchSize(remainingMb: number, currentBatchSizeMb: number): number | null {
-	for (let i = 0; i <= BATCH_SIZE_FIBONACCI_SEQ.length; ++i) {
-		const potentialNextBatchMb = BATCH_SIZE_FIBONACCI_SEQ[i] * INGOT_SIZE;
-
+/**
+ * Determines the next batch size based on remaining material and current batch size
+ * @param remainingMb Remaining material in millibuckets
+ * @param currentBatchSizeMb Current batch size in millibuckets
+ * @returns Next batch size or null if no suitable size found
+ */
+const getNextBatchSize = (remainingMb: number, currentBatchSizeMb: number): number | null => {
+	for (const size of BATCH_SIZE_FIBONACCI_SEQ) {
+		const potentialNextBatchMb = size * INGOT_SIZE;
 		if (potentialNextBatchMb > remainingMb) continue;
 		if (potentialNextBatchMb < currentBatchSizeMb) return potentialNextBatchMb;
 	}
-
 	return null;
-}
+};
 
-function calculateViableBatchScale(
+/**
+ * Calculates the maximum viable scale for a batch based on available minerals
+ * @param batch The batch production result
+ * @param availableMinerals Currently available minerals
+ * @returns The maximum scale factor for the batch
+ */
+const calculateViableBatchScale = (
 		batch: AlloyProductionResult,
 		availableMinerals: MineralWithQuantity[]
-): number {
-	return batch.usedMinerals.reduce((minBatches, usedMineral) => {
-		const available = availableMinerals.find(m => m.mineral.name === usedMineral.mineral.name)!;
-		const possibleBatches = Math.floor(available.quantity / usedMineral.quantity);
-		return Math.min(minBatches, possibleBatches);
-	}, Number.MAX_SAFE_INTEGER);
-}
+): number => Math.min(...batch.usedMinerals.map(usedMineral => {
+	const available = availableMinerals.find(m => m.mineral.name === usedMineral.mineral.name)!;
+	return Math.floor(available.quantity / usedMineral.quantity);
+}), Number.MAX_SAFE_INTEGER);
 
-function scaleBatch(
+/**
+ * Scales a batch production result
+ * @param batchResult The original batch production result
+ * @param scale The scale factor to apply
+ * @returns Scaled batch production result
+ */
+const scaleBatch = (
 		batchResult: AlloyProductionResult,
-		scale : number
-) : AlloyProductionResult {
-	return {
-		success: batchResult.success,
-		usedMinerals: batchResult.usedMinerals.map(mineral => ({
-			mineral: mineral.mineral,
-			quantity: mineral.quantity * scale
-		})),
-		outputMb: batchResult.outputMb * scale
-	}
-}
+		scale: number
+): AlloyProductionResult => ({
+	success: batchResult.success,
+	usedMinerals: batchResult.usedMinerals.map(mineral => ({
+		mineral: mineral.mineral,
+		quantity: mineral.quantity * scale
+	})),
+	outputMb: batchResult.outputMb * scale
+});
 
+/**
+ * Calculates a single batch of alloy production
+ * @param targetMb Target volume in millibuckets
+ * @param components Required alloy components
+ * @param availableMinerals Available minerals for production
+ * @returns Batch production result
+ */
 function calculateSingleBatch(
 		targetMb: number,
 		components: AlloyComponent[],
@@ -161,44 +169,29 @@ function calculateSingleBatch(
 ): AlloyProductionResult {
 	const mineralsByType = groupAndSortMinerals(availableMinerals);
 
-	 /**
-	 Helper function to calculate total mB from a combination
-	 */
-	function calculateTotalMb(minerals: MineralWithQuantity[]): number {
-		return minerals.reduce((sum, m) => sum + (m.mineral.yield * m.quantity), 0);
-	}
+	const calculateTotalMb = (minerals: MineralWithQuantity[]): number =>
+			minerals.reduce((sum, m) => sum + (m.mineral.yield * m.quantity), 0);
 
-	/**
-	 * Helper function to check if combination is valid
- 	 */
-	function isValidCombination(minerals: MineralWithQuantity[]): boolean {
+	const isValidCombination = (minerals: MineralWithQuantity[]): boolean => {
 		const totalMb = calculateTotalMb(minerals);
-
-		if (Math.abs(Math.round(totalMb) - Math.round(targetMb)) > 0) {
-			return false;
-		}
+		if (Math.abs(Math.round(totalMb) - Math.round(targetMb)) > 0) return false;
 
 		// Group minerals by type and calculate mB for each
 		const mbByType = new Map<string, number>();
-		for (const mineral of minerals) {
+		minerals.forEach(mineral => {
 			const type = mineral.mineral.produces;
 			const mb = mineral.mineral.yield * mineral.quantity;
 			mbByType.set(type, (mbByType.get(type) ?? 0) + mb);
-		}
+		});
 
 		// Check percentages
-		for (const component of components) {
+		return components.every(component => {
 			const mineralType = component.mineral.toLowerCase();
 			const mb = mbByType.get(mineralType) ?? 0;
 			const percentage = (mb / totalMb) * 100;
-
-			if (percentage < component.min || percentage > component.max) {
-				return false;
-			}
-		}
-
-		return true;
-	}
+			return percentage >= component.min && percentage <= component.max;
+		});
+	};
 
 	let currentCombination: MineralWithQuantity[] = [];
 
@@ -314,11 +307,18 @@ function calculateSingleBatch(
 	};
 }
 
+/**
+ * Finds a valid combination of minerals for alloy production using batched approach
+ * @param targetMb Target volume in millibuckets
+ * @param components Required alloy components
+ * @param availableMinerals Available minerals for production
+ * @returns Alloy production result
+ */
 function findValidCombinationBatched(
 		targetMb: number,
 		components: AlloyComponent[],
 		availableMinerals: MineralWithQuantity[]
-): AlloyProductionResult | null {
+): AlloyProductionResult {
 	const batchResults: AlloyProductionResult[] = [];
 	let remainingMb = targetMb;
 	let currentBatchSizeMb = MAX_BATCH_MB;
@@ -330,7 +330,9 @@ function findValidCombinationBatched(
 		const nextBatchSize = getNextBatchSize(remainingMb, currentBatchSizeMb);
 
 		if (!nextBatchSize) {
-			// TODO: Add backtracking logic here if all batches are exhausted
+			//* Potential place for backtracking (if necessary in the future)
+			//? Calculate with maths the change percentage of there being a possibility for backtracking to make any difference here?
+			//? If there is a reported number of not found cases, this might actually be necessary
 			break;
 		}
 
@@ -360,10 +362,24 @@ function findValidCombinationBatched(
 		};
 	}
 
-	// TODO: Handle cases where target is unmet with backtracking if necessary
-	return null;
+	//* Potential place for backtracking (if necessary in the future)
+	//? Calculate with maths the change percentage of there being a possibility for backtracking to make any difference here?
+	//? If there is a reported number of not found cases, this might actually be necessary
+	return {
+		outputMb: 0,
+		usedMinerals: [],
+		success: false,
+		message: `No valid combination found!`
+	};
 }
 
+/**
+ * Calculates alloy production based on target volume and alloy specifications
+ * @param targetMb Target volume in millibuckets
+ * @param targetAlloy Alloy specifications
+ * @param availableMinerals Available minerals for production
+ * @returns Alloy production result
+ */
 export function calculateAlloy(
 		targetMb: number,
 		targetAlloy: Alloy,
@@ -386,6 +402,7 @@ export function calculateAlloy(
 		};
 	}
 
+	// Check minimum requirements for each component
 	for (const component of targetAlloy.components) {
 		const mineralType = component.mineral.toLowerCase();
 		const minRequired = (component.min / 100) * targetMb;
@@ -412,9 +429,9 @@ export function calculateAlloy(
 		};
 	}
 
-		return {
-			outputMb: targetMb,
-			usedMinerals: result.usedMinerals,
-			success: true
-		};
+	return {
+		outputMb: targetMb,
+		usedMinerals: result.usedMinerals,
+		success: true
+	};
 }
