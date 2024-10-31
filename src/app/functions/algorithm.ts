@@ -420,7 +420,7 @@ export function calculateAlloy(
 
 	const result = findValidCombinationBatched(targetMb, targetAlloy.components, availableMinerals);
 
-	if (!result) {
+	if (!result.success) {
 		return {
 			outputMb: 0,
 			usedMinerals: [],
