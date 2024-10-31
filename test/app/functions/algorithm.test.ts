@@ -76,31 +76,69 @@ describe('calculateAlloy algorithm', () => {
 		}
 	];
 
-	describe('pass cases', () => {
-		testCases.forEach(({ name, minerals, targetIngots }) => {
-			it(`${name}`, () => {
-				runTest({
-					        targetIngots,
-					        alloy: bronzeAlloy,
-					        minerals
-				        });
-			});
-		});
-	});
+	const performanceTestCases = [
+		{
+			name: '100 ingots',
+			targetIngots: 100,
+			mineralVariants: 9,
+			mineralQuantity: 50
+		},
+		{
+			name: '500 ingots',
+			targetIngots: 500,
+			mineralVariants: 9,
+			mineralQuantity: 500
+		},
+		{
+			name: '1000 ingots',
+			targetIngots: 1000,
+			mineralVariants: 20,
+			mineralQuantity: 1000
+		}
+	];
 
-	describe('fail cases', () => {
-		failureCases.forEach(({ name, minerals, expectedMessage }) => {
-			it(`${name}`, () => {
-				runTest({
-									targetIngots: 3,
-									alloy: bronzeAlloy,
-					        minerals
-				        },
-				        {
-									success: false,
-					        expectedMessage: expectedMessage,
-				        });
+	describe('base functionality test', () => {
+		describe('pass cases', () => {
+			testCases.forEach(({ name, minerals, targetIngots }) => {
+				it(`${name}`, () => {
+					runTest({
+						        targetIngots,
+						        alloy: bronzeAlloy,
+						        minerals
+					        });
+				});
 			});
 		});
+
+		describe('fail cases', () => {
+			failureCases.forEach(({ name, minerals, expectedMessage }) => {
+				it(`${name}`, () => {
+					runTest({
+						        targetIngots: 3,
+						        alloy: bronzeAlloy,
+						        minerals
+					        },
+					        {
+						        success: false,
+						        expectedMessage: expectedMessage,
+					        });
+				});
+			});
+		});
+	})
+
+	describe('stress tests', () => {
+		test.each(performanceTestCases)(
+				'should handle production of $name efficiently',
+				({targetIngots, mineralVariants, mineralQuantity}) => {
+					runTest(
+							{
+								targetIngots,
+								mineralVariants,
+								mineralQuantity,
+								alloy : bronzeAlloy,
+							});
+				}
+		);
 	});
 });
