@@ -128,26 +128,6 @@
 			]
 		},
 		{
-			"name": "Stainless Steel",
-			"components": [
-				{
-					"mineral": "steel",
-					"min": 60.0,
-					"max": 80.0
-				},
-				{
-					"mineral": "nickel",
-					"min": 10.0,
-					"max": 20.0
-				},
-				{
-					"mineral": "chromium",
-					"min": 20.0,
-					"max": 30.0
-				}
-			]
-		},
-		{
 			"name": "Sterling Silver",
 			"components": [
 				{

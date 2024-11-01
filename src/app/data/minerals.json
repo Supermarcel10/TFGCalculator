@@ -1,1005 +1,1543 @@
 {
-    "bismuth": [
-        {
-            "name": "Raw Bismuth",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Bismuth",
-            "yield": 48,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Bismuth",
-            "yield": 24,
-            "uses": ["vessel", "crucible"]
-        } ,
-        {
-            "name": "Tiny Pile of Bismuth Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Bismuth Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Bismuth Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Bismuth Dust",
-            "yield":80,
-            "uses": ["vessel"]
-        },
-        {
-            "name": "Crushed Bismuth Ore",
-            "yield": 80,
-            "uses": ["vessel"]
-        }
-    ],
-
-
-  "bismuth_bronze": [
-            {
-            "name": "Tiny Pile of Bismuth Bronze Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Bismuth Bronze Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Bismuth Bronze Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        }
-    ],
-
-
-  "black_bronze": [
-            {
-            "name": "Tiny Pile of Black Bronze Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Black Bronze Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Black Bronze Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        }
-    ],
-
-
-  "black_steel": [
-            {
-            "name": "Tiny Pile of Black Steel Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Black Steel Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Black Steel Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        }
-    ],
-
-
-  "blue_steel": [
-            {
-            "name": "Tiny Pile of Blue Steel Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Blue Steel Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Blue Steel Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        }
-    ],
-
-
-  "brass": [
-            {
-            "name": "Tiny Pile of Brass Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Brass Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Brass Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        }
-    ],
-
-
-    "copper": [
-        {
-            "name": "Raw Tetrahedrite",
-            "yield": 31,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Tetrahedrite",
-            "yield": 42,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Tetrahedrite",
-            "yield": 21,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tiny Pile of Tetrahedrite Dust",
-            "yield": 13,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Tetrahedrite Dust",
-            "yield": 31,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tetrahedrite Dust",
-            "yield": 129,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Tetrahedrite Dust",
-            "yield": 72,
-            "uses": ["vessel"]
-        },
-        {
-            "name": "Crushed Tetrahedrite Ore",
-            "yield": 72,
-            "uses": ["vessel"]
-        },
-
-
-
-        {
-            "name": "Raw Copper",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Copper",
-            "yield": 48,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Copper",
-            "yield": 24,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tiny Pile of Copper Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Copper Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Copper Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Copper Dust",
-            "yield": 80,
-            "uses": ["vessel"]
-        },
-        {
-            "name": "Crushed Copper Ore",
-            "yield": 80,
-            "uses": ["vessel"]
-        },
-
-
-        {
-            "name": "Raw Chalcopyrite",
-            "yield": 31,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Chalcopyrite",
-            "yield": 42,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Chalcopyrite",
-            "yield": 21,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tiny Pile of Chalcopyrite Dust",
-            "yield": 13,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Chalcopyrite Dust",
-            "yield": 31,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Chalcopyrite Dust",
-            "yield": 129,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Chalcopyrite Dust",
-            "yield": 72,
-            "uses": ["vessel"]
-        }, 
-        {
-            "name": "Crushed Chalcopyrite Ore",
-            "yield": 72,
-            "uses": ["vessel"]
-        },
-
-
-        {
-            "name": "Raw Malachite",
-            "yield": 31,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Malachite",
-            "yield": 42,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Malachite",
-            "yield": 21,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tiny Pile of Malachite Dust",
-            "yield": 13,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Malachite Dust",
-            "yield": 31,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Malachite Dust",
-            "yield": 129,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Malachite Dust",
-            "yield": 72,
-            "uses": ["vessel"]
-        },
-        {
-            "name": "Crushed Malachite Ore",
-            "yield": 72,
-            "uses": ["vessel"]
-        }
-    ],
-
-
-    "gold": [
-        {
-            "name": "Raw Gold",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Gold",
-            "yield": 48,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Gold",
-            "yield": 24,
-            "uses": ["vessel", "crucible"]
-        } ,
-        {
-            "name": "Tiny Pile of Gold Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Gold Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Gold Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Gold Dust",
-            "yield": 80,
-            "uses": ["vessel"]
-        }, 
-        {
-            "name": "Crushed Gold Ore",
-            "yield": 80,
-            "uses": ["vessel"]
-        }
-    ],
-
-
-    "iron": [
-        {
-            "name": "Raw Iron",
-            "yield": 36,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Rich Raw Iron",
-            "yield": 48,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Poor Raw Iron",
-            "yield": 24,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Tiny Pile of Iron Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Small Pile of Iron Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Iron Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Impure Pile of Iron Dust",
-            "yield": 80,
-            "uses": ["vessel", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Crushed Iron Ore",
-            "yield": 80,
-            "uses": ["vessel"]
-        },
-
-        {
-            "name": "Tiny Pile of Wrought Iron Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Small Pile of Wrought Iron Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Wrought Iron Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-
-        {
-            "name": "Raw Hematite",
-            "yield": 31,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Rich Raw Hematite",
-            "yield": 42,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Poor Raw Hematite",
-            "yield": 21,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Tiny Pile of Hematite Dust",
-            "yield": 13,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Small Pile of Hematite Dust",
-            "yield": 31,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Hematite Dust",
-            "yield": 129,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Impure Pile of Hematite Dust",
-            "yield": 72,
-            "uses": ["vessel", "bloomery", "blast_furnace"]
-        }, 
-        {
-            "name": "Crushed Hematite Ore",
-            "yield": 72,
-            "uses": ["vessel"]
-        },
-
-        {
-            "name": "Raw Pyrite",
-            "yield": 31,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Rich Raw Pyrite",
-            "yield": 42,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Poor Raw Pyrite",
-            "yield": 21,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Tiny Pile of Pyrite Dust",
-            "yield": 13,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Small Pile of Pyrite Dust",
-            "yield": 31,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Pyrite Dust",
-            "yield": 129,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Impure Pile of Pyrite Dust",
-            "yield": 72,
-            "uses": ["vessel", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Crushed Pyrite Ore",
-            "yield": 72,
-            "uses": ["vessel"]
-        },
-
-        {
-            "name": "Raw Goethite",
-            "yield": 30,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Rich Raw Goethite",
-            "yield": 40,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Poor Raw Goethite",
-            "yield": 19,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Tiny Pile of Goethite Dust",
-            "yield": 13,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Small Pile of Goethite Dust",
-            "yield": 30,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Goethite Dust",
-            "yield": 121,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Impure Pile of Goethite Dust",
-            "yield": 68,
-            "uses": ["vessel", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Crushed Goethite Ore",
-            "yield": 68,
-            "uses": ["vessel"]
-        },
-
-        {
-            "name": "Raw Yellow Limonite",
-            "yield": 31,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Rich Raw Yellow Limonite",
-            "yield": 42,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Poor Raw Yellow Limonite",
-            "yield": 21,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Tiny Pile of Yellow Limonite Dust",
-            "yield": 13,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Small Pile of Yellow Limonite Dust",
-            "yield": 31,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Yellow Limonite Dust",
-            "yield": 129,
-            "uses": ["vessel", "crucible", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Impure Pile of Yellow Limonite Dust",
-            "yield": 72,
-            "uses": ["vessel", "bloomery", "blast_furnace"]
-        },
-        {
-            "name": "Crushed Yellow Limonite Ore",
-            "yield": 72,
-            "uses": ["vessel"]
-        },
-
-        {
-            "name": "Raw Iron Bloom",
-            "yield": 144,
-            "uses": ["vessel", "crucible", "blast_furnace"]
-        },
-        {
-            "name": "Refined Iron Bloom",
-            "yield": 144,
-            "uses": ["vessel", "crucible", "blast_furnace"]
-        }
-    ],
-
-
-    "nickel": [
-        {
-            "name": "Raw Nickel",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Nickel",
-            "yield": 48,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Nickel",
-            "yield": 24,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tiny Pile of Nickel Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Nickel Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Nickel Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Nickel Dust",
-            "yield": 80,
-            "uses": ["vessel"]
-        },
-        {
-            "name": "Crushed Nickel Ore",
-            "yield": 80,
-            "uses": ["vessel"]
-        },
-
-        {
-            "name": "Raw Garnierite",
-            "yield": 31,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Garnierite",
-            "yield": 42,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Garnierite",
-            "yield": 21,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tiny Pile of Garnierite Dust",
-            "yield": 13,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Garnierite Dust",
-            "yield": 31,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Garnierite Dust",
-            "yield": 129,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Garnierite Dust",
-            "yield": 72,
-            "uses": ["vessel"]
-        },
-        {
-            "name": "Crushed Garnierite Ore",
-            "yield": 72,
-            "uses": ["vessel"]
-        }
-    ],
-
-
-  "red_steel": [
-            {
-            "name": "Tiny Pile of Red Steel Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Red Steel Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Red Steel Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        }
-    ],
-
-
-    "redstone": [
-        {
-            "name": "Raw Redstone",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Redstone",
-            "yield": 48,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Redstone",
-            "yield": 24,
-            "uses": ["vessel", "crucible"]
-        } ,
-        {
-            "name": "Tiny Pile of Redstone Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Redstone Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Redstone Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Redstone Dust",
-            "yield": 80,
-            "uses": ["vessel"]
-        },
-        {
-            "name": "Crushed Redstone Ore",
-            "yield": 80,
-            "uses": ["vessel"]
-        }
-    ],
-
-
-  "rose_gold": [
-            {
-            "name": "Tiny Pile of Rose Gold Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Rose Gold Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rose Gold Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        }
-    ],
-
-
-    "silver": [
-        {
-            "name": "Raw Silver",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Silver",
-            "yield": 48,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Silver",
-            "yield": 24,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tiny Pile of Silver Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Silver Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Silver Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Silver Dust",
-            "yield": 80,
-            "uses": ["vessel"]
-        },
-        {
-            "name": "Crushed Silver Ore",
-            "yield": 80,
-            "uses": ["vessel"]
-        }
-    ],
-
-  "steel": [
-            {
-            "name": "Tiny Pile of Steel Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Steel Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Steel Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        }
-    ],
-
-
-  "sterling_silver": [
-            {
-            "name": "Tiny Pile of Sterling Silver Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Sterling Silver Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Sterling Silver Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        }
-    ],
-
-
-    "tin": [
-        {
-            "name": "Raw Tin",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Tin",
-            "yield": 48,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Tin",
-            "yield": 24,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tiny Pile of Tin Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Tin Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tin Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Tin Dust",
-            "yield": 80,
-            "uses": ["vessel"]
-        },
-        {
-            "name": "Crushed Tin Ore",
-            "yield": 80,
-            "uses": ["vessel"]
-        },
-
-
-        {
-            "name": "Raw Cassiterite",
-            "yield": 72,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Cassiterite",
-            "yield": 96,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Cassiterite",
-            "yield": 48,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tiny Pile of Cassiterite Dust",
-            "yield": 32,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Cassiterite Dust",
-            "yield": 72,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Cassiterite Dust",
-            "yield": 288,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Cassiterite Dust",
-            "yield": 160,
-            "uses": ["vessel"]
-        },
-        {
-            "name": "Crushed Cassiterite Ore",
-            "yield": 160,
-            "uses": ["vessel"]
-        },
-
-
-        {
-            "name": "Raw Cassiterite Sand",
-            "yield": 54,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Cassiterite Sand",
-            "yield": 72,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Cassiterite Sand",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Cassiterite Sand Dust",
-            "yield": 120,
-            "uses": ["vessel"]
-        }
-    ],
-
-
-    "zinc": [
-        {
-            "name": "Raw Sphalerite",
-            "yield": 31,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Rich Raw Sphalerite",
-            "yield": 42,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Poor Raw Sphalerite",
-            "yield": 21,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Tiny Pile of Sphalerite Dust",
-            "yield": 13,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Sphalerite Dust",
-            "yield": 31,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Sphalerite Dust",
-            "yield": 129,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Impure Pile of Sphalerite Dust",
-            "yield": 72,
-            "uses": ["vessel"]
-        },
-        {
-            "name": "Crushed Sphalerite Ore",
-            "yield": 72,
-            "uses": ["vessel"]
-        },
-
-        {
-            "name": "Tiny Pile of Zinc Dust",
-            "yield": 16,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Small Pile of Zinc Dust",
-            "yield": 36,
-            "uses": ["vessel", "crucible"]
-        },
-        {
-            "name": "Zinc Dust",
-            "yield": 144,
-            "uses": ["vessel", "crucible"]
-        }
-    ]
+	"bismuth": [
+		{
+			"name": "Raw Bismuth",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Bismuth",
+			"yield": 48,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Bismuth",
+			"yield": 24,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Bismuth Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Bismuth Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Bismuth Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Bismuth Dust",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Bismuth Ore",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		}
+	],
+	"bismuth_bronze": [
+		{
+			"name": "Tiny Pile of Bismuth Bronze Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Bismuth Bronze Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Bismuth Bronze Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		}
+	],
+	"black_bronze": [
+		{
+			"name": "Tiny Pile of Black Bronze Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Black Bronze Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Black Bronze Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		}
+	],
+	"black_steel": [
+		{
+			"name": "Tiny Pile of Black Steel Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Black Steel Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Black Steel Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		}
+	],
+	"blue_steel": [
+		{
+			"name": "Tiny Pile of Blue Steel Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Blue Steel Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Blue Steel Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		}
+	],
+	"brass": [
+		{
+			"name": "Tiny Pile of Brass Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Brass Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Brass Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		}
+	],
+	"copper": [
+		{
+			"name": "Raw Tetrahedrite",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Tetrahedrite",
+			"yield": 42,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Tetrahedrite",
+			"yield": 21,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Tetrahedrite Dust",
+			"yield": 13,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Tetrahedrite Dust",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tetrahedrite Dust",
+			"yield": 129,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Tetrahedrite Dust",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Tetrahedrite Ore",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Raw Copper",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Copper",
+			"yield": 48,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Copper",
+			"yield": 24,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Copper Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Copper Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Copper Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Copper Dust",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Copper Ore",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Raw Chalcopyrite",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Chalcopyrite",
+			"yield": 42,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Chalcopyrite",
+			"yield": 21,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Chalcopyrite Dust",
+			"yield": 13,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Chalcopyrite Dust",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Chalcopyrite Dust",
+			"yield": 129,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Chalcopyrite Dust",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Chalcopyrite Ore",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Raw Malachite",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Malachite",
+			"yield": 42,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Malachite",
+			"yield": 21,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Malachite Dust",
+			"yield": 13,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Malachite Dust",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Malachite Dust",
+			"yield": 129,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Malachite Dust",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Malachite Ore",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		}
+	],
+	"gold": [
+		{
+			"name": "Raw Gold",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Gold",
+			"yield": 48,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Gold",
+			"yield": 24,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Gold Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Gold Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Gold Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Gold Dust",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Gold Ore",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		}
+	],
+	"iron": [
+		{
+			"name": "Raw Iron",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Rich Raw Iron",
+			"yield": 48,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Poor Raw Iron",
+			"yield": 24,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Tiny Pile of Iron Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Small Pile of Iron Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Iron Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Impure Pile of Iron Dust",
+			"yield": 80,
+			"uses": [
+				"vessel",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Crushed Iron Ore",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Tiny Pile of Wrought Iron Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Small Pile of Wrought Iron Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Wrought Iron Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Raw Hematite",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Rich Raw Hematite",
+			"yield": 42,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Poor Raw Hematite",
+			"yield": 21,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Tiny Pile of Hematite Dust",
+			"yield": 13,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Small Pile of Hematite Dust",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Hematite Dust",
+			"yield": 129,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Impure Pile of Hematite Dust",
+			"yield": 72,
+			"uses": [
+				"vessel",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Crushed Hematite Ore",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Raw Pyrite",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Rich Raw Pyrite",
+			"yield": 42,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Poor Raw Pyrite",
+			"yield": 21,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Tiny Pile of Pyrite Dust",
+			"yield": 13,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Small Pile of Pyrite Dust",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Pyrite Dust",
+			"yield": 129,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Impure Pile of Pyrite Dust",
+			"yield": 72,
+			"uses": [
+				"vessel",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Crushed Pyrite Ore",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Raw Goethite",
+			"yield": 30,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Rich Raw Goethite",
+			"yield": 40,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Poor Raw Goethite",
+			"yield": 19,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Tiny Pile of Goethite Dust",
+			"yield": 13,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Small Pile of Goethite Dust",
+			"yield": 30,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Goethite Dust",
+			"yield": 121,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Impure Pile of Goethite Dust",
+			"yield": 68,
+			"uses": [
+				"vessel",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Crushed Goethite Ore",
+			"yield": 68,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Raw Yellow Limonite",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Rich Raw Yellow Limonite",
+			"yield": 42,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Poor Raw Yellow Limonite",
+			"yield": 21,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Tiny Pile of Yellow Limonite Dust",
+			"yield": 13,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Small Pile of Yellow Limonite Dust",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Yellow Limonite Dust",
+			"yield": 129,
+			"uses": [
+				"vessel",
+				"crucible",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Impure Pile of Yellow Limonite Dust",
+			"yield": 72,
+			"uses": [
+				"vessel",
+				"bloomery",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Crushed Yellow Limonite Ore",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Raw Iron Bloom",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible",
+				"blast_furnace"
+			]
+		},
+		{
+			"name": "Refined Iron Bloom",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible",
+				"blast_furnace"
+			]
+		}
+	],
+	"nickel": [
+		{
+			"name": "Raw Nickel",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Nickel",
+			"yield": 48,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Nickel",
+			"yield": 24,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Nickel Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Nickel Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Nickel Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Nickel Dust",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Nickel Ore",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Raw Garnierite",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Garnierite",
+			"yield": 42,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Garnierite",
+			"yield": 21,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Garnierite Dust",
+			"yield": 13,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Garnierite Dust",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Garnierite Dust",
+			"yield": 129,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Garnierite Dust",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Garnierite Ore",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		}
+	],
+	"red_steel": [
+		{
+			"name": "Tiny Pile of Red Steel Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Red Steel Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Red Steel Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		}
+	],
+	"redstone": [
+		{
+			"name": "Raw Redstone",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Redstone",
+			"yield": 48,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Redstone",
+			"yield": 24,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Redstone Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Redstone Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Redstone Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Redstone Dust",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Redstone Ore",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		}
+	],
+	"rose_gold": [
+		{
+			"name": "Tiny Pile of Rose Gold Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Rose Gold Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rose Gold Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		}
+	],
+	"silver": [
+		{
+			"name": "Raw Silver",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Silver",
+			"yield": 48,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Silver",
+			"yield": 24,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Silver Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Silver Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Silver Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Silver Dust",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Silver Ore",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		}
+	],
+	"steel": [
+		{
+			"name": "Tiny Pile of Steel Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Steel Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Steel Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		}
+	],
+	"sterling_silver": [
+		{
+			"name": "Tiny Pile of Sterling Silver Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Sterling Silver Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Sterling Silver Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		}
+	],
+	"tin": [
+		{
+			"name": "Raw Tin",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Tin",
+			"yield": 48,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Tin",
+			"yield": 24,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Tin Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Tin Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tin Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Tin Dust",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Tin Ore",
+			"yield": 80,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Raw Cassiterite",
+			"yield": 72,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Cassiterite",
+			"yield": 96,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Cassiterite",
+			"yield": 48,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Cassiterite Dust",
+			"yield": 32,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Cassiterite Dust",
+			"yield": 72,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Cassiterite Dust",
+			"yield": 288,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Cassiterite Dust",
+			"yield": 160,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Cassiterite Ore",
+			"yield": 160,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Raw Cassiterite Sand",
+			"yield": 54,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Cassiterite Sand",
+			"yield": 72,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Cassiterite Sand",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Cassiterite Sand Dust",
+			"yield": 120,
+			"uses": [
+				"vessel"
+			]
+		}
+	],
+	"zinc": [
+		{
+			"name": "Raw Sphalerite",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Rich Raw Sphalerite",
+			"yield": 42,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Poor Raw Sphalerite",
+			"yield": 21,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Tiny Pile of Sphalerite Dust",
+			"yield": 13,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Sphalerite Dust",
+			"yield": 31,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Sphalerite Dust",
+			"yield": 129,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Impure Pile of Sphalerite Dust",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Crushed Sphalerite Ore",
+			"yield": 72,
+			"uses": [
+				"vessel"
+			]
+		},
+		{
+			"name": "Tiny Pile of Zinc Dust",
+			"yield": 16,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Small Pile of Zinc Dust",
+			"yield": 36,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		},
+		{
+			"name": "Zinc Dust",
+			"yield": 144,
+			"uses": [
+				"vessel",
+				"crucible"
+			]
+		}
+	]
 }

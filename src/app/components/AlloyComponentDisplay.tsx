@@ -2,7 +2,7 @@ import {ErrorComponent} from "@/app/components/ErrorComponent";
 import {MineralAccordion} from "@/app/components/MineralAccordion";
 import {OutputResultComponent} from "@/app/components/OutputResultComponent";
 import {AlloyProductionResult, calculateAlloy, MineralWithQuantity} from "@/app/functions/algorithm";
-import {capitaliseFirstLetter} from "@/app/functions/utils";
+import {capitaliseFirstLetterOfEachWord, getBaseMineralFromOverride} from "@/app/functions/utils";
 import {Alloy, AlloyComponent, Mineral, MineralUse} from "@/app/types";
 import React, {useEffect, useState} from "react";
 
@@ -66,14 +66,27 @@ export function AlloyComponentDisplay({alloy} : Readonly<AlloyDisplayProps>) {
 
 		try {
 			const mineralWithQuantities: MineralWithQuantity[] = Array.from(mineralQuantities.entries()).map(
-					([mineralName, quantity]) => ({
-						mineral: alloyMinerals.find(m => m.name === mineralName)!,
-						quantity
-					})).filter(m => m.quantity > 0);
+					([mineralName, quantity]) => {
+						let mineral = alloyMinerals.find(m => m.name === mineralName);
 
-			const result = calculateAlloy(targetIngotCount * mbPerIngot, alloyMixture, mineralWithQuantities);
-			setResult(result);
+						if (!mineral) {
+							const baseMineralName = getBaseMineralFromOverride(mineralName);
+
+							if (mineralName.toLowerCase().includes('ingot')) {
+								mineral = ingotOverride(baseMineralName);
+							} else if (mineralName.toLowerCase().includes('nugget')) {
+								mineral = nuggetOverride(baseMineralName);
+							}
+						}
+
+						return {
+							mineral: mineral!,
+							quantity
+						};
+					}).filter(m => m.quantity > 0);
+			setResult(calculateAlloy(targetIngotCount * mbPerIngot, alloyMixture, mineralWithQuantities));
 		} catch (e) {
+			console.log(e);
 			if (e instanceof Error) {
 				setError(e);
 			} else {
@@ -114,6 +127,30 @@ export function AlloyComponentDisplay({alloy} : Readonly<AlloyDisplayProps>) {
 			targetIngotCount !== 0
 			&& !isResultAlteredSinceLastCalculation
 			&& !error;
+
+	const ingotOverride = (mineral: string): Mineral => {
+		return {
+			name: `${capitaliseFirstLetterOfEachWord(mineral)} Ingot`,
+				produces: mineral,
+				yield: mbPerIngot,
+				uses: [
+					MineralUse.Vessel,
+					MineralUse.Crucible
+				],
+		}
+	}
+
+	const nuggetOverride = (mineral: string): Mineral=> {
+		return {
+			name: `${capitaliseFirstLetterOfEachWord(mineral)} Nugget`,
+			produces: mineral,
+			yield: mbPerNugget,
+			uses: [
+				MineralUse.Vessel,
+				MineralUse.Crucible
+			],
+		}
+	}
 
 	function componentIngotAvailable(component : AlloyComponent) : boolean {
 		return component.hasIngot == null || component.hasIngot;
@@ -173,33 +210,17 @@ export function AlloyComponentDisplay({alloy} : Readonly<AlloyDisplayProps>) {
 							const hasNugget = componentMinerals.some(m => m.name.toLowerCase().includes('nugget'));
 
 							if (!hasIngot && componentIngotAvailable(component)) {
-								componentMinerals.push({
-									name: `${capitaliseFirstLetter(mineral)} Ingot`,
-									produces: mineral,
-									yield: mbPerIngot,
-									uses: [
-										MineralUse.Vessel,
-										MineralUse.Crucible
-									],
-								});
+								componentMinerals.push(ingotOverride(component.mineral));
 							}
 
 							if (!hasNugget && componentNugetAvailable(component)) {
-								componentMinerals.push({
-									name: `${capitaliseFirstLetter(mineral)} Nugget`,
-									produces: mineral,
-									yield: mbPerNugget,
-									uses: [
-											MineralUse.Vessel,
-											MineralUse.Crucible
-									],
-								});
+								componentMinerals.push(nuggetOverride(component.mineral));
 							}
 
 							return (
 									<MineralAccordion
 											key={mineral}
-											title={mineral}
+											title={capitaliseFirstLetterOfEachWord(mineral)}
 											minerals={componentMinerals}
 											mineralQuantities={mineralQuantities}
 											onQuantityChange={handleMineralQuantityChange}
