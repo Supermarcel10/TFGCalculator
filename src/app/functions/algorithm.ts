@@ -5,6 +5,17 @@ export interface MineralWithQuantity {
 	quantity: number;
 }
 
+interface MineralState {
+	minerals: MineralWithQuantity[];
+	index: number;
+	mb: number;
+}
+
+interface CombinationResult {
+	combinations: MineralWithQuantity[][];
+	stats: ComponentGenerationStats;
+}
+
 export interface AlloyProductionResult {
 	outputMb: number;
 	usedMinerals: MineralWithQuantity[];
@@ -14,13 +25,14 @@ export interface AlloyProductionResult {
 }
 
 export interface Stats {
-	generation?: GenerationStats;
+	generation?: ComponentGenerationStats;
 	batch?: BatchStats;
 	usage?: UsageStats;
 }
 
-export interface GenerationStats {
+export interface ComponentGenerationStats {
 	runs: number;
+	accepts: number;
 	declines: number;
 }
 
@@ -205,6 +217,98 @@ const scaleBatch = (
 });
 
 /**
+ * Check if is a valid combination within required constraints
+ * @param mb Milibucket amount to check
+ * @param minMb Minimum milibucket constraint for a given component
+ * @param maxMb Maximum milibucket constraint for a given component
+ */
+function isValidCombination(mb: number, minMb: number, maxMb: number): boolean {
+	return mb >= minMb && mb <= maxMb;
+}
+
+/**
+ * Attempts to create a new state by adding a specific quantity of a mineral
+ * @param state - The current mineral state
+ * @param mineral - The mineral to add
+ * @param quantity - The quantity of the mineral to add
+ * @param maxMb - Maximum milibucket constraint for a given component
+ * @returns A new state object if valid, null if the addition would exceed maxMb
+ */
+function tryAddMineralQuantity(
+		state: MineralState,
+		mineral: MineralWithQuantity,
+		quantity: number,
+		maxMb: number
+): MineralState | null {
+	const newMb = state.mb + (mineral.mineral.yield * quantity);
+	if (newMb > maxMb) return null;
+
+	const newMinerals = quantity > 0
+	                    ? [...state.minerals, { mineral: mineral.mineral, quantity }]
+	                    : state.minerals;
+
+	return {
+		minerals: newMinerals,
+		index: state.index + 1,
+		mb: newMb
+	};
+}
+
+/**
+ * Generates all valid combinations of minerals that satisfy the constraints
+ * @param minerals - Array of available minerals with their maximum quantities
+ * @param minMb - Minimum milibucket constraint for a given component
+ * @param maxMb - Maximum milibucket constraint for a given component
+ * @returns An object containing the valid combinations and generation statistics
+ */
+function generateComponentCombinations(
+		minerals: MineralWithQuantity[],
+		minMb: number,
+		maxMb: number
+): CombinationResult {
+	const stats: ComponentGenerationStats = {
+		runs: 0,
+		accepts: 0,
+		declines: 0,
+	};
+
+	const componentCombinations: MineralWithQuantity[][] = [];
+	const stack: MineralState[] = [{
+		minerals: [],
+		index: 0,
+		mb: 0
+	}];
+
+	while (stack.length > 0) {
+		++stats.runs;
+		const current = stack.pop()!;
+
+		if (isValidCombination(current.mb, minMb, maxMb)) {
+			componentCombinations.push([...current.minerals]);
+			++stats.accepts;
+		} else if (current.mb < minMb || current.mb > maxMb) {
+			++stats.declines;
+		}
+
+		if (current.index >= minerals.length || current.mb > maxMb) {
+			continue;
+		}
+
+		const currentMineral = minerals[current.index];
+		for (let qty = 0; qty <= currentMineral.quantity; ++qty) {
+			const newState = tryAddMineralQuantity(current, currentMineral, qty, maxMb);
+			if (!newState) break;
+			stack.push(newState);
+		}
+	}
+
+	return {
+		combinations: componentCombinations,
+		stats,
+	};
+}
+
+/**
  * Calculates a single batch of alloy production
  * @param targetMb Target volume in millibuckets
  * @param components Required alloy components
@@ -216,9 +320,6 @@ function calculateSingleBatch(
 		components: AlloyComponent[],
 		availableMinerals: MineralWithQuantity[]
 ): AlloyProductionResult {
-	let runs = 0;
-	let declines = 0;
-
 	const sortedComponents = [...components].sort((a, b) => a.min - b.min);
 	const mineralsByType = groupAndSortMinerals(availableMinerals);
 
@@ -256,62 +357,9 @@ function calculateSingleBatch(
 		const maxMb = (component.max / 100) * targetMb;
 
 		// Get all possible combinations for this component
-		const componentCombinations: MineralWithQuantity[][] = [];
-
-		// Generate combinations iteratively
-		function generateComponentCombinations() {
-			const stack: Array<{
-				minerals: MineralWithQuantity[],
-				index: number,
-				mb: number
-			}> = [{
-				minerals: [],
-				index: 0,
-				mb: 0
-			}];
-
-			while (stack.length > 0) {
-				++runs;
-				const current = stack.pop()!;
-
-				// If we have a valid amount for this component, save it
-				if (current.mb >= minMb && current.mb <= maxMb) {
-					componentCombinations.push([...current.minerals]);
-				}
-
-				if (current.mb < minMb || current.mb > maxMb) {
-					declines++;
-				}
-
-				// If we've processed all minerals or exceeded max, continue
-				if (current.index >= minerals.length || current.mb > maxMb) {
-					continue;
-				}
-
-				const mineral = minerals[current.index];
-
-				// Try using different quantities of this mineral
-				for (let qty = 0; qty <= mineral.quantity; qty++) {
-					const newMb = current.mb + (mineral.mineral.yield * qty);
-					if (newMb > maxMb) break;
-
-					const newMinerals = qty > 0 ? [
-						...current.minerals,
-						{ mineral: mineral.mineral, quantity: qty }
-					] : current.minerals;
-
-					stack.push(
-							{
-								minerals: newMinerals,
-								index: current.index + 1,
-								mb: newMb
-							}
-					);
-				}
-			}
-		}
-
-		generateComponentCombinations();
+		const componentCombinationResult = generateComponentCombinations(minerals, minMb, maxMb);
+		const componentCombinations = componentCombinationResult.combinations;
+		const componentStats = componentCombinationResult.stats;
 
 		// If no valid combinations for this component, return null
 		if (componentCombinations.length === 0) {
@@ -321,10 +369,7 @@ function calculateSingleBatch(
 				success: false,
 				message: `No valid combinations found for component: ${component.mineral}`,
 				stats: {
-					generation: {
-						runs,
-						declines,
-					}
+					generation: componentStats,
 				},
 			};
 		}
@@ -356,10 +401,7 @@ function calculateSingleBatch(
 				success: false,
 				message: `No valid combination found for component: ${component.mineral}`,
 				stats: {
-					generation: {
-						runs,
-						declines,
-					}
+					generation: componentStats,
 				},
 			};
 		}
@@ -369,12 +411,6 @@ function calculateSingleBatch(
 		outputMb: calculateTotalMb(currentCombination),
 		usedMinerals: currentCombination,
 		success: true,
-		stats: {
-			generation: {
-				runs,
-				declines,
-			}
-		},
 	};
 }
 
@@ -432,7 +468,8 @@ function findValidCombinationBatched(
 	const stats = {
 		generation: {
 			runs: batchResults.reduce((sum, result) => sum + (result.stats?.generation?.runs ?? 0), 0),
-			declines: batchResults.reduce((sum, result) => sum + (result.stats?.generation?.declines ?? 0), 0)
+			accepts: batchResults.reduce((sum, result) => sum + (result.stats?.generation?.accepts ?? 0), 0),
+			declines: batchResults.reduce((sum, result) => sum + (result.stats?.generation?.declines ?? 0), 0),
 		},
 		batch: {
 			count: batchRunCount,
