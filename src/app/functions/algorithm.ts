@@ -121,6 +121,7 @@ const updateAvailableMinerals = (
  * @param minerals List of minerals to consolidate
  * @returns Consolidated list of minerals
  */
+// TODO: Improve on this method
 const consolidateUsedMinerals = (minerals: MineralWithQuantity[]): MineralWithQuantity[] => {
 	const consolidated = new Map<string, MineralWithQuantity>();
 	minerals.forEach(m => {
@@ -194,6 +195,8 @@ function calculateSingleBatch(
 ): AlloyProductionResult {
 	let runs = 0;
 	let declines = 0;
+
+	const sortedComponents = [...components].sort((a, b) => a.min - b.min);
 	const mineralsByType = groupAndSortMinerals(availableMinerals);
 
 	const calculateTotalMb = (minerals: MineralWithQuantity[]): number =>
@@ -212,7 +215,7 @@ function calculateSingleBatch(
 		});
 
 		// Check percentages
-		return components.every(component => {
+		return sortedComponents.every(component => {
 			const mineralType = component.mineral.toLowerCase();
 			const mb = mbByType.get(mineralType) ?? 0;
 			const percentage = (mb / totalMb) * 100;
@@ -223,7 +226,7 @@ function calculateSingleBatch(
 	let currentCombination: MineralWithQuantity[] = [];
 
 	// Process one component at a time
-	for (const component of components) {
+	for (const component of sortedComponents) {
 		const mineralType = component.mineral.toLowerCase();
 		const minerals = mineralsByType.get(mineralType) || [];
 		const minMb = (component.min / 100) * targetMb;
@@ -309,7 +312,7 @@ function calculateSingleBatch(
 			const testCombination = [...currentCombination, ...combination];
 
 			// For the last component, check if the entire combination is valid
-			if (component === components[components.length - 1]) {
+			if (component === sortedComponents[sortedComponents.length - 1]) {
 				if (isValidCombination(testCombination)) {
 					currentCombination = testCombination;
 					foundValidCombination = true;
@@ -366,7 +369,7 @@ function findValidCombinationBatched(
 ): AlloyProductionResult {
 	const batchResults: AlloyProductionResult[] = [];
 	let remainingMb = targetMb;
-	let currentBatchSizeMb = MAX_BATCH_MB;
+	let nextBatchSizeMb = MAX_BATCH_MB;
 
 	let batchRunCount = 0;
 	let batchAcceptCount = 0;
@@ -375,10 +378,10 @@ function findValidCombinationBatched(
 	let batchBacktrackPotential = 0;
 
 	while (remainingMb > 0) {
-		const nextBatchSize = getNextBatchSize(remainingMb, currentBatchSizeMb);
 		++batchRunCount;
+		const currentBatchSizeMb = getNextBatchSize(remainingMb, nextBatchSizeMb);
 
-		if (!nextBatchSize) {
+		if (!currentBatchSizeMb) {
 			++batchBacktrackPotential;
 			//* Potential place for backtracking (if necessary in the future)
 			//? Calculate with maths the change percentage of there being a possibility for backtracking to make any difference here?
@@ -386,7 +389,7 @@ function findValidCombinationBatched(
 			break;
 		}
 
-		const batchResult = calculateSingleBatch(nextBatchSize, components, availableMinerals);
+		const batchResult = calculateSingleBatch(currentBatchSizeMb, components, availableMinerals);
 
 		if (batchResult?.success) {
 			++batchAcceptCount;
@@ -400,7 +403,7 @@ function findValidCombinationBatched(
 			availableMinerals = updateAvailableMinerals(availableMinerals, scaledBatchResult.usedMinerals);
 		} else ++batchDeclineCount;
 
-		currentBatchSizeMb = nextBatchSize;
+		nextBatchSizeMb = currentBatchSizeMb;
 	}
 
 	const stats = {
@@ -418,10 +421,8 @@ function findValidCombinationBatched(
 	};
 
 	const totalOutputMb = batchResults.reduce((sum, result) => sum + result.outputMb, 0);
-	const consolidatedMinerals = batchResults.flatMap(batch => batch.usedMinerals);
-	const finalUsedMinerals = consolidateUsedMinerals(consolidatedMinerals);
-
 	if (totalOutputMb >= targetMb) {
+		const finalUsedMinerals = consolidateUsedMinerals(batchResults.flatMap(batch => batch.usedMinerals));
 		return {
 			outputMb: totalOutputMb,
 			usedMinerals: finalUsedMinerals,
@@ -452,7 +453,7 @@ function findValidCombinationBatched(
 export function calculateAlloy(
 		targetMb: number,
 		targetAlloy: Alloy,
-		availableMinerals: MineralWithQuantity[]
+		availableMinerals: MineralWithQuantity[],
 ): AlloyProductionResult {
 	const mineralsByType = groupAndSortMinerals(availableMinerals);
 	const totalAvailableByType = calculateAvailableMbByType(mineralsByType);
