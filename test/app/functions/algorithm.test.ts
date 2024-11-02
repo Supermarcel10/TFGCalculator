@@ -141,4 +141,99 @@ describe('calculateAlloy algorithm', () => {
 				}
 		);
 	});
+
+	describe('weird edge cases, where subpar outputs noted in past', () => {
+		it('brass 5, 15/15/15/15/15/15 & 15/15/15', () => {
+			const targetIngot = 5;
+			const availableMinerals = [
+				{
+					mineral: {
+						name: "Raw Tetrahedrite",
+						yield: 31,
+						produces: "copper"
+					},
+					quantity: 15
+				},
+				{
+					mineral: {
+						name: "Rich Raw Tetrahedrite",
+						yield: 42,
+						produces: "copper"
+					},
+					quantity: 15
+				},
+				{
+					mineral: {
+						name: "Poor Raw Tetrahedrite",
+						yield: 21,
+						produces: "copper"
+					},
+					quantity: 15
+				},
+				{
+					mineral: {
+						name: "Raw Copper",
+						yield: 36,
+						produces: "copper"
+					},
+					quantity: 15
+				},
+				{
+					mineral: {
+						name: "Rich Raw Copper",
+						yield: 48,
+						produces: "copper"
+					},
+					quantity: 15
+				},
+				{
+					mineral: {
+						name: "Poor Raw Copper",
+						yield: 24,
+						produces: "copper"
+					},
+					quantity: 15
+				},
+				{
+					mineral: {
+						name: "Raw Sphalerite",
+						yield: 31,
+						produces: "zinc"
+					},
+					quantity: 15
+				},
+				{
+					mineral: {
+						name: "Rich Raw Sphalerite",
+						yield: 42,
+						produces: "zinc"
+					},
+					quantity: 15
+				},
+				{
+					mineral: {
+						name: "Poor Raw Sphalerite",
+						yield: 21,
+						produces: "zinc"
+					},
+					quantity: 15
+				},
+			];
+			const brassAlloy: Alloy = {
+				name: 'Brass',
+				components: [
+					{ mineral: 'zinc', min: 8, max: 12 },
+					{ mineral: 'copper', min: 88, max: 92 },
+				],
+			};
+
+			runTest(
+					{
+						targetIngots: targetIngot,
+						minerals: availableMinerals,
+						alloy: brassAlloy
+					},
+			);
+		});
+	})
 });
