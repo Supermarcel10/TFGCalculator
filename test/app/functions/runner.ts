@@ -1,4 +1,4 @@
-import {AlloyProductionResult, calculateAlloy, MineralWithQuantity} from "@/app/functions/algorithm";
+import {calculateAlloy, MineralWithQuantity} from "@/app/functions/algorithm";
 import {Alloy, Mineral} from "@/app/types";
 
 
@@ -9,19 +9,15 @@ const ACCEPTABLE_TIME_MS : number = 1000;
  * Function to measure execution time and memory usage
  * @param fn Function to probe
  */
-function measureExecutionTimeAndMemoryUse(fn: () => void): { timeTakenMs: number, memoryUsedMB: number } {
-	const start = process.hrtime.bigint();
+function measureMemoryUse<T>(fn: () => T): {fnReturn: T, memoryUsedMB: number } {
 	const startMemory = process.memoryUsage().heapUsed;
-	fn();
+	const fnReturn = fn();
 	const endMemory = process.memoryUsage().heapUsed;
-	const end = process.hrtime.bigint();
-
-	const timeTaken = Number(end - start) / 1_000_000; // ms conversion
 	const memoryUsed = (endMemory - startMemory) / 1024 / 1024; // MB conversion
 
 	return {
-		memoryUsedMB : timeTaken,
-		timeTakenMs : memoryUsed,
+		fnReturn : fnReturn,
+		memoryUsedMB : memoryUsed,
 	};
 }
 
@@ -53,6 +49,7 @@ export function runTest(
 		},
 		testConfig: {
 			success?: boolean,
+			careless?: boolean,
 			expectedMessage?: string,
 			acceptableTimeMsOverride?: number,
 			acceptableMemMbOverride?: number,
@@ -68,6 +65,7 @@ export function runTest(
 
 	const {
 		success = true,
+		careless = false,
 		expectedMessage,
 		acceptableTimeMsOverride = ACCEPTABLE_TIME_MS,
 		acceptableMemMbOverride = ACCEPTABLE_MEM_MB
@@ -91,41 +89,38 @@ export function runTest(
 		}))
 	];
 
-	// Measure execution
-	let result: AlloyProductionResult | null = null;
-	const {timeTakenMs, memoryUsedMB} = measureExecutionTimeAndMemoryUse(() => {
-		result = calculateAlloy(targetMb, alloy, testMinerals);
-	});
+	const {fnReturn : result, memoryUsedMB} = measureMemoryUse(() => calculateAlloy(targetMb, alloy, testMinerals));
 
-	// Assertions
 	if (result == null) {
 		throw new Error("Result not returned!")
 	}
 
-	result = result as AlloyProductionResult;
-	expect(result.success).toBe(success);
-	expect(expectedMessage == undefined) || expect(result.message).toBe(expectedMessage)
-	success && expect(result.outputMb).toBe(targetMb);
+	// Only run assertions if not careless
+	if (!careless) {
+		expect(result.success).toBe(success);
+		expectedMessage && expect(result.message).toBe(expectedMessage);
+		success && expect(result.outputMb).toBe(targetMb);
 
+		// Performance acceptance checks
+		expect(result.stats?.usage?.runtimeMs).toBeLessThan(acceptableTimeMsOverride);
+		expect(result.stats?.usage?.memoryMB).toBeLessThan(acceptableMemMbOverride);
+	}
+
+	// Statistics
 	console.log(`Performance Metrics:
   Target: ${targetIngots} ingots
   Mineral Variants: ${mineralVariants}
-  Calculation Time: ${timeTakenMs.toFixed(2)}ms
+  Calculation Time: ${result.stats?.usage?.runtimeMs.toFixed(2)}ms
   Memory Used: ${memoryUsedMB.toFixed(2)}MB
-  Success: ${result.success}
+  Success: ${result?.success}
   `);
-
-	// Performance acceptance checks
-	expect(timeTakenMs).toBeLessThan(acceptableTimeMsOverride);
-	expect(memoryUsedMB).toBeLessThan(acceptableMemMbOverride);
 
 	return {
 		result,
 		performance: {
-			timeTakenMs,
 			memoryUsedMB,
 			targetIngots,
-			mineralVariants
+			mineralVariants,
 		}
 	};
 }
