@@ -117,21 +117,44 @@ const updateAvailableMinerals = (
 };
 
 /**
- * Consolidates used minerals, combining duplicates
- * @param minerals List of minerals to consolidate
- * @returns Consolidated list of minerals
+ * Consolidates minerals by combining quantities of duplicates based on mineral name
+ * @param minerals - Array of minerals with their quantities to consolidate
+ * @returns Array of consolidated minerals with combined quantities
  */
-// TODO: Improve on this method
-const consolidateUsedMinerals = (minerals: MineralWithQuantity[]): MineralWithQuantity[] => {
-	const consolidated = new Map<string, MineralWithQuantity>();
-	minerals.forEach(m => {
-		const key = m.mineral.name;
-		consolidated.set(key, consolidated.has(key)
-		                      ? {...m, quantity: consolidated.get(key)!.quantity + m.quantity}
-		                      : {...m}
-		);
-	});
-	return Array.from(consolidated.values());
+const consolidateMinerals = (minerals : MineralWithQuantity[]) : MineralWithQuantity[] => {
+	if (minerals.length <= 1) {
+		return [...minerals];
+	}
+
+	const consolidatedMap = minerals.reduce<Map<string, MineralWithQuantity>>(
+			(acc, current) => {
+				const {name} = current.mineral;
+
+				if (acc.has(name)) {
+					const existing = acc.get(name)!;
+					acc.set(name, {
+						...existing,
+						quantity : existing.quantity + current.quantity
+					});
+				} else {
+					acc.set(name, {...current});
+				}
+
+				return acc;
+			},
+			new Map()
+	);
+
+	return Array.from(consolidatedMap.values());
+};
+
+/**
+ * Flatmaps all batchResults through consolidation
+ * @param batchResults All batch resutls to be consolidated
+ */
+const getFinalMinerals = (batchResults : { usedMinerals : MineralWithQuantity[] }[]) => {
+	const allMinerals = batchResults.flatMap(batch => batch.usedMinerals);
+	return consolidateMinerals(allMinerals);
 };
 
 /**
@@ -422,10 +445,9 @@ function findValidCombinationBatched(
 
 	const totalOutputMb = batchResults.reduce((sum, result) => sum + result.outputMb, 0);
 	if (totalOutputMb >= targetMb) {
-		const finalUsedMinerals = consolidateUsedMinerals(batchResults.flatMap(batch => batch.usedMinerals));
 		return {
 			outputMb: totalOutputMb,
-			usedMinerals: finalUsedMinerals,
+			usedMinerals: getFinalMinerals(batchResults),
 			success: true,
 			stats: stats,
 		};
