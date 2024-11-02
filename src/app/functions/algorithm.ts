@@ -10,6 +10,31 @@ export interface AlloyProductionResult {
 	usedMinerals: MineralWithQuantity[];
 	success: boolean;
 	message?: string;
+	stats?: Stats;
+}
+
+export interface Stats {
+	generation?: GenerationStats;
+	batch?: BatchStats;
+	usage?: UsageStats;
+}
+
+export interface GenerationStats {
+	runs: number;
+	declines: number;
+}
+
+export interface BatchStats {
+	count: number;
+	accepts: number;
+	declines: number;
+	scaleEfficiency: number;
+	backtrackPotential: number;
+}
+
+export interface UsageStats {
+	memoryMB: number,
+	runtimeMs: number,
 }
 
 const INGOT_SIZE = 144;
@@ -167,6 +192,8 @@ function calculateSingleBatch(
 		components: AlloyComponent[],
 		availableMinerals: MineralWithQuantity[]
 ): AlloyProductionResult {
+	let runs = 0;
+	let declines = 0;
 	const mineralsByType = groupAndSortMinerals(availableMinerals);
 
 	const calculateTotalMb = (minerals: MineralWithQuantity[]): number =>
@@ -218,11 +245,16 @@ function calculateSingleBatch(
 			}];
 
 			while (stack.length > 0) {
+				++runs;
 				const current = stack.pop()!;
 
 				// If we have a valid amount for this component, save it
 				if (current.mb >= minMb && current.mb <= maxMb) {
 					componentCombinations.push([...current.minerals]);
+				}
+
+				if (current.mb < minMb || current.mb > maxMb) {
+					declines++;
 				}
 
 				// If we've processed all minerals or exceeded max, continue
@@ -261,7 +293,13 @@ function calculateSingleBatch(
 				outputMb: 0,
 				usedMinerals: [],
 				success: false,
-				message: `No valid combinations found for component: ${component.mineral}`
+				message: `No valid combinations found for component: ${component.mineral}`,
+				stats: {
+					generation: {
+						runs,
+						declines,
+					}
+				},
 			};
 		}
 
@@ -290,7 +328,13 @@ function calculateSingleBatch(
 				outputMb: 0,
 				usedMinerals: [],
 				success: false,
-				message: `No valid combination found for component: ${component.mineral}`
+				message: `No valid combination found for component: ${component.mineral}`,
+				stats: {
+					generation: {
+						runs,
+						declines,
+					}
+				},
 			};
 		}
 	}
@@ -298,7 +342,13 @@ function calculateSingleBatch(
 	return {
 		outputMb: calculateTotalMb(currentCombination),
 		usedMinerals: currentCombination,
-		success: true
+		success: true,
+		stats: {
+			generation: {
+				runs,
+				declines,
+			}
+		},
 	};
 }
 
@@ -318,13 +368,18 @@ function findValidCombinationBatched(
 	let remainingMb = targetMb;
 	let currentBatchSizeMb = MAX_BATCH_MB;
 
-	let currentRun = 0;
+	let batchRunCount = 0;
+	let batchAcceptCount = 0;
+	let batchDeclineCount = 0;
+	let batchScaleEfficiency = 0;
+	let batchBacktrackPotential = 0;
 
 	while (remainingMb > 0) {
-		currentRun = ++currentRun;
 		const nextBatchSize = getNextBatchSize(remainingMb, currentBatchSizeMb);
+		++batchRunCount;
 
 		if (!nextBatchSize) {
+			++batchBacktrackPotential;
 			//* Potential place for backtracking (if necessary in the future)
 			//? Calculate with maths the change percentage of there being a possibility for backtracking to make any difference here?
 			//? If there is a reported number of not found cases, this might actually be necessary
@@ -334,16 +389,33 @@ function findValidCombinationBatched(
 		const batchResult = calculateSingleBatch(nextBatchSize, components, availableMinerals);
 
 		if (batchResult?.success) {
+			++batchAcceptCount;
 			const scale = calculateViableBatchScale(batchResult, availableMinerals);
 			const scaledBatchResult = scale > 1 ? scaleBatch(batchResult, scale) : batchResult;
+
+			batchScaleEfficiency += scale;
 
 			batchResults.push(scaledBatchResult);
 			remainingMb -= scaledBatchResult.outputMb;
 			availableMinerals = updateAvailableMinerals(availableMinerals, scaledBatchResult.usedMinerals);
-		}
+		} else ++batchDeclineCount;
 
 		currentBatchSizeMb = nextBatchSize;
 	}
+
+	const stats = {
+		generation: {
+			runs: batchResults.reduce((sum, result) => sum + (result.stats?.generation?.runs ?? 0), 0),
+			declines: batchResults.reduce((sum, result) => sum + (result.stats?.generation?.declines ?? 0), 0)
+		},
+		batch: {
+			count: batchRunCount,
+			accepts: batchAcceptCount,
+			declines: batchDeclineCount,
+			scaleEfficiency: batchScaleEfficiency,
+			backtrackPotential: batchBacktrackPotential,
+		},
+	};
 
 	const totalOutputMb = batchResults.reduce((sum, result) => sum + result.outputMb, 0);
 	const consolidatedMinerals = batchResults.flatMap(batch => batch.usedMinerals);
@@ -353,7 +425,8 @@ function findValidCombinationBatched(
 		return {
 			outputMb: totalOutputMb,
 			usedMinerals: finalUsedMinerals,
-			success: true
+			success: true,
+			stats: stats,
 		};
 	}
 
@@ -364,7 +437,8 @@ function findValidCombinationBatched(
 		outputMb: 0,
 		usedMinerals: [],
 		success: false,
-		message: `No valid combination found!`
+		message: `No valid combination found!`,
+		stats: stats,
 	};
 }
 
@@ -413,20 +487,40 @@ export function calculateAlloy(
 		}
 	}
 
+	const start = performance.now();
+
 	const result = findValidCombinationBatched(targetMb, targetAlloy.components, availableMinerals);
+
+	const end = performance.now();
+	const timeTaken = Number(end - start)
+
 
 	if (!result.success) {
 		return {
 			outputMb: 0,
 			usedMinerals: [],
 			success: false,
-			message: "Could not find valid combination of materials"
+			message: "Could not find valid combination of materials",
+			stats: {
+				...result.stats,
+				usage: {
+					memoryMB: 0,
+					runtimeMs: timeTaken,
+				},
+			},
 		};
 	}
 
 	return {
 		outputMb: targetMb,
 		usedMinerals: result.usedMinerals,
-		success: true
+		success: true,
+		stats: {
+			...result.stats,
+			usage: {
+				memoryMB: 0,
+				runtimeMs: timeTaken,
+			},
+		},
 	};
 }
