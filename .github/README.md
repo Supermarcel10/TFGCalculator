@@ -23,9 +23,10 @@ This calculator streamlines the process of determining optimal metal ratios, sav
 
 ## ⚙️ Support
 At present the calculator supports:
-- TerraFirmaGreg 1.20.x - Up to date with version 0.7.14
+- **TerraFirmaGreg 1.20.x** - Up to date with version 0.7.14
+- **TerraFirmaCraft 1.20.1** - Up to date with version 3.2.12
 
-**Further support for TerraFirmaGreg 1.12.x and TerraFirmaCraft modpacks is planned for future releases!**
+**Further support for TerraFirmaGreg 1.12.x and custom import/export is planned for future releases!**
 
 ## ✨ Features
 - **Inventory Based**: Input what you have available, and the calculator does the rest!

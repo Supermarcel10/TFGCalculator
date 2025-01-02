@@ -1,4 +1,4 @@
-import {SmeltingOutput, SmeltingComponent, InputMineral} from "@/types";
+import {SmeltingOutput, SmeltingComponent, InputMineral, QuantifiedInputMineral} from "@/types";
 
 
 export interface MineralWithQuantity {
@@ -13,48 +13,48 @@ export interface MetalProductionResult {
 	message?: string;
 }
 
-// interface MineralCombination {
-// 	minerals: MineralWithQuantity[];
-// 	outputMb: number;
-// }
-
-/**
- * Groups minerals by their production type.
- * For example groups all copper producing minerals.
- * @param availableMinerals All available minerals.
- */
-function groupMinerals(availableMinerals: MineralWithQuantity[]) : Map<string, MineralWithQuantity[]> {
-	const mineralsByType = new Map<string, MineralWithQuantity[]>();
-
-	for (const mineralWithQty of availableMinerals) {
-		const producedMineral = mineralWithQty.mineral.produces.toLowerCase();
-
-		if (!mineralsByType.has(producedMineral)) {
-			mineralsByType.set(producedMineral, []);
-		}
-
-		mineralsByType.get(producedMineral)?.push(mineralWithQty);
-	}
-
-	return mineralsByType;
-}
-
 /**
  * Calculate the total available mB for each mineral production type.
  * @param mineralsByType Grouped minerals by their production type.
  */
-function calculateAvailableMbByType(mineralsByType : Map<string, MineralWithQuantity[]>) : Map<string, number> {
+function calculateAvailableMbByType(mineralsByType : Map<string, QuantifiedInputMineral[]>) : Map<string, number> {
 	const totalAvailableByType = new Map<string, number>();
 
-	mineralsByType.forEach((minerals: MineralWithQuantity[], type: string) => {
-		const total = minerals.reduce(
-				(sum: number, m: MineralWithQuantity): number => sum + (m.mineral.yield * m.quantity), 0
-		);
+	for (const [type, minerals] of mineralsByType) {
+		let totalForType = 0;
 
-		totalAvailableByType.set(type, total);
-	});
+		for (const mineral of minerals) {
+			totalForType += mineral.yield * mineral.quantity;
+		}
+
+		totalAvailableByType.set(type, totalForType);
+	}
 
 	return totalAvailableByType;
+}
+
+//! TODO: DEPRECATE
+/**
+ * TEMPORARY PLACEHOLDER CONVERSION FUNCTION
+ */
+function convertToMineralWithQuantity(mineralsByType: Map<string, QuantifiedInputMineral[]>): Map<string, MineralWithQuantity[]> {
+	const convertedMap = new Map<string, MineralWithQuantity[]>();
+
+	for (const [type, minerals] of mineralsByType) {
+		const convertedMinerals = minerals.map(quantifiedMineral => ({
+			mineral: {
+				name: quantifiedMineral.name,
+				produces: quantifiedMineral.produces,
+				yield: quantifiedMineral.yield,
+				uses: quantifiedMineral.uses
+			},
+			quantity: quantifiedMineral.quantity
+		}));
+
+		convertedMap.set(type, convertedMinerals);
+	}
+
+	return convertedMap;
 }
 
 function findValidCombination(
@@ -204,11 +204,10 @@ function findValidCombination(
 export function calculateMetal(
 		targetMb: number,
 		targetMetal: SmeltingOutput,
-		availableMinerals: MineralWithQuantity[]
+		availableMinerals: Map<string, QuantifiedInputMineral[]>
 ): MetalProductionResult {
 	const targetMetalComponents = targetMetal.components;
-	const mineralsByType = groupMinerals(availableMinerals);
-	const totalAvailableByType = calculateAvailableMbByType(mineralsByType);
+	const totalAvailableByType = calculateAvailableMbByType(availableMinerals);
 
 	// Check if we have enough total material
 	const totalAvailable = Array.from(totalAvailableByType.values()).reduce(
@@ -243,7 +242,7 @@ export function calculateMetal(
 	const result = findValidCombination(
 			targetMb,
 			targetMetalComponents,
-			mineralsByType
+			convertToMineralWithQuantity(availableMinerals)
 	);
 
 	if (!result) {

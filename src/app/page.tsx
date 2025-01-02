@@ -61,7 +61,6 @@ export default function Home() {
 							<a
 									href="https://github.com/Supermarcel10/TFGCalculator/issues/new/choose"
 									target="_blank"
-									className="text-teal-500"
 							>
 								issue on GitHub
 							</a>

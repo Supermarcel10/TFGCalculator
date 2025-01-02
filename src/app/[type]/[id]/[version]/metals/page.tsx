@@ -1,6 +1,6 @@
 "use client";
 
-import {SmeltingOutput} from "@/types";
+import {SmeltingOutput, SmeltingOutputType} from "@/types";
 import {useParams, useRouter} from "next/navigation";
 import {HeadingWithBackButton} from "@/components/HeadingWithBackButton";
 import {SelfCenteringGrid} from "@/components/SelfCenteringGrid";
@@ -16,8 +16,8 @@ export default function Home() {
 	const router = useRouter();
 	const {type, id, version} = useParams();
 
-	const [metals, setMetals] = useState<SmeltingOutput[]>([]);
-	const [filteredMetals, setFilteredMetals] = useState<SmeltingOutput[]>([]);
+	const [rawResult, setRawResult] = useState<SmeltingOutput[]>([]);
+	const [filteredResult, setFilteredResult] = useState<SmeltingOutput[]>([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 	const [filterType, setFilterType] = useState<CreationSelectionFilter>(CreationSelectionFilter.All);
@@ -28,13 +28,13 @@ export default function Home() {
 	}, [router, type, id, version]);
 
 	useEffect(() => {
-		let result = metals;
+		let result = rawResult;
 
 		if (filterType !== CreationSelectionFilter.All) {
 			result = result.filter(smeltingOutput =>
 					                       filterType === CreationSelectionFilter.Metals
-					                       ? smeltingOutput.isMineral
-					                       : !smeltingOutput.isMineral
+					                       ? smeltingOutput.type === SmeltingOutputType.METAL
+					                       : smeltingOutput.type === SmeltingOutputType.ALLOY
 			);
 		}
 
@@ -44,8 +44,8 @@ export default function Home() {
 			);
 		}
 
-		setFilteredMetals(result);
-	}, [metals, filterType, searchTerm]);
+		setFilteredResult(result);
+	}, [rawResult, filterType, searchTerm]);
 
 	useEffect(() => {
 		fetch(`/api/${type}/${id}/${version}/metal`)
@@ -57,8 +57,8 @@ export default function Home() {
 					return response.json();
 				})
 				.then(data => {
-					setMetals(data);
-					setFilteredMetals(data);
+					setRawResult(data);
+					setFilteredResult(data);
 				})
 				.catch(error => {
 					setError("Failed to load metals");
@@ -116,9 +116,9 @@ export default function Home() {
 					{isLoading && <LoadingSpinner/>}
 					{error && <ErrorComponent error={error}/>}
 
-					{!isLoading && !error && filteredMetals.length > 0 && (
+					{!isLoading && !error && filteredResult.length > 0 && (
 							<SelfCenteringGrid
-									elements={filteredMetals}
+									elements={filteredResult}
 									perRow={{
 										default : 2,
 										sm : 3,
@@ -129,7 +129,7 @@ export default function Home() {
 							/>
 					)}
 
-					{!isLoading && !error && filteredMetals.length === 0 && (
+					{!isLoading && !error && filteredResult.length === 0 && (
 							<p className="text-center text-teal-100 mt-4">
 								No metals available for this selection.
 							</p>

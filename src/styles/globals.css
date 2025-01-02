@@ -24,3 +24,32 @@ body {
         margin: 0;
     }
 }
+
+@layer components {
+    a {
+        @apply text-teal-500
+    }
+
+    .text-primary {
+        @apply text-teal-100;
+    }
+
+    button.text-primary,
+    input.text-primary,
+    .interactive-text-primary {
+        @apply text-teal-100 hover:text-teal-300 focus:text-teal-300 active:text-teal-400
+        transition-colors duration-200 cursor-pointer;
+    }
+
+    .primary {
+        @apply bg-teal-600
+    }
+
+    button.primary,
+    input.primary,
+    .interactive-primary {
+        @apply bg-teal-600 hover:bg-teal-700 focus:bg-teal-700 active:bg-teal-500 transition-colors
+        disabled:bg-gray-400 disabled:hover:bg-gray-500 disabled:focus:bg-gray-500
+        duration-200 cursor-pointer disabled:cursor-not-allowed
+    }
+}

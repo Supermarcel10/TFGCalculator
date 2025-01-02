@@ -29,17 +29,15 @@
     {
       "id": "terrafirmacraft",
       "displayName": "TerraFirmaCraft",
-      "version": "3.2.9",
+      "version": "3.2.12",
       "gameVersion": "1.20.1",
       "constants": {
-        "ingotMb": 144,
-        "nuggetMb": 16,
-        "blockMb": 1296
+        "ingotMb": 100
       },
-      "supported": false
+      "supported": true
     }
   ],
-  "lastUpdated": "2024-11-01",
-  "version": "1.0.0",
+  "lastUpdated": "2024-12-29",
+  "version": "1.1.0",
   "schemaVersion": "1"
 }

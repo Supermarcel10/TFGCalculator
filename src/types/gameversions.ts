@@ -1,9 +1,9 @@
 export type VersionType = "mod" | "modpack";
 
 export interface Constants {
-	ingotMb : number;
-	nuggetMb : number;
-	blockMb : number;
+	nuggetMb? : number;
+	ingotMb? : number;
+	blockMb? : number;
 }
 
 export interface BaseGameVersion {

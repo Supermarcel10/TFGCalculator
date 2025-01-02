@@ -67,7 +67,11 @@ export function GameVersionSelector() {
 					<div className="flex flex-col sm:flex-row justify-center w-full gap-4">
 						<select
 								value={selectedType}
-								onChange={(e) => setSelectedType(e.target.value as VersionType)}
+								onChange={(e) => {
+									const newType = e.target.value as VersionType;
+									setSelectedType(newType);
+									setSelectedOption(options?.[newType]?.[0] || null);
+								}}
 								className="w-full sm:w-32 p-2 rounded border border-teal-500 bg-transparent text-teal-100"
 								aria-label="Select type"
 						>
@@ -97,9 +101,7 @@ export function GameVersionSelector() {
 					<button
 							onClick={handleCalculate}
 							disabled={!selectedOption}
-							className="w-full sm:w-auto px-6 py-2 rounded
-        bg-teal-600 hover:bg-teal-700 transition-colors duration-200 text-white
-        disabled:opacity-50 disabled:cursor-not-allowed"
+							className="w-full sm:w-auto px-6 py-2 rounded primary"
 							aria-label="Go to calculator"
 					>
 						Calculate

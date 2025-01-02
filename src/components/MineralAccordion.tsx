@@ -1,16 +1,15 @@
-import {InputMineral} from "@/types";
+import {QuantifiedInputMineral} from "@/types";
 import React, {useState} from "react";
 
 
 interface MineralAccordionProps {
 	title: string;
-	minerals: InputMineral[];
-	mineralQuantities: Map<string, number>;
+	minerals: QuantifiedInputMineral[];
 	onQuantityChange: (mineralName: string, e: React.ChangeEvent<HTMLInputElement>) => void;
 	onInputKeyPress: (e: React.KeyboardEvent) => Promise<void>;
 }
 
-export function MineralAccordion({ title, minerals, mineralQuantities, onQuantityChange, onInputKeyPress }: Readonly<MineralAccordionProps>) {
+export function MineralAccordion({ title, minerals, onQuantityChange, onInputKeyPress }: Readonly<MineralAccordionProps>) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -33,8 +32,7 @@ export function MineralAccordion({ title, minerals, mineralQuantities, onQuantit
 										<input
 												type="number"
 												id={mineral.name}
-												value={mineralQuantities.get(mineral.name) === 0 ? '' :
-												       mineralQuantities.get(mineral.name) ?? ''}
+												value={mineral.quantity === 0 ? '' : mineral.quantity}
 												placeholder="0"
 												onChange={(e) => onQuantityChange(mineral.name, e)}
 												onKeyDown={onInputKeyPress}

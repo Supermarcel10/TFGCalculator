@@ -1,0 +1,649 @@
+{
+  "lastUpdated": "2024-12-29",
+  "version": "1.0.1",
+  "schemaVersion": "1",
+  "bismuth": [
+    {
+      "name": "Small Bismuthine",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Poor Bismuthine",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Normal Bismuthine",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Rich Bismuthine",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "bismuth_bronze": [
+    {
+      "name": "Bismuth Bronze Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Bismuth Bronze Chain",
+      "yield": 6,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "black_bronze": [
+    {
+      "name": "Black Bronze Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Black Bronze Chain",
+      "yield": 6,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "black_steel": [
+    {
+      "name": "Black Steel Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Black Steel Chain",
+      "yield": 6,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "blue_steel": [
+    {
+      "name": "Blue Steel Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Blue Steel Chain",
+      "yield": 6,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "brass": [
+    {
+      "name": "Brass Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "copper": [
+    {
+      "name": "Small Native Copper",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Small Malachite",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Small Tetrahedrite",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Poor Native Copper",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Poor Malachite",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Poor Tetrahedrite",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Normal Native Copper",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Normal Malachite",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Normal Tetrahedrite",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Rich Native Copper",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Rich Malachite",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Rich Tetrahedrite",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Copper Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Copper Chain",
+      "yield": 6,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "gold": [
+    {
+      "name": "Small Gold",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Poor Gold",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Normal Gold",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Rich Gold",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Bismuth Gold",
+      "yield": 100,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Gold Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "iron": [
+    {
+      "name": "Small Hematite",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Small Megnetite",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Small Limonite",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Poor Hematite",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Poor Megnetite",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Poor Limonite",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Normal Hematite",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Normal Megnetite",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Normal Limonite",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Rich Hematite",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Rich Megnetite",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Rich Limonite",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible",
+        "bloomery",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Raw Iron Bloom",
+      "yield": 100,
+      "uses": [
+        "vessel",
+        "crucible",
+        "blast_furnace"
+      ]
+    },
+    {
+      "name": "Refined Iron Bloom",
+      "yield": 100,
+      "uses": [
+        "vessel",
+        "crucible",
+        "blast_furnace"
+      ]
+    }
+  ],
+  "nickel": [
+    {
+      "name": "Small Garnierite",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Poor Garnierite",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Normal Garnierite",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Rich Garnierite",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Nickel Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "red_steel": [
+    {
+      "name": "Red Steel Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Red Steel Chain",
+      "yield": 6,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "rose_gold": [
+    {
+      "name": "Rose Gold Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "silver": [
+    {
+      "name": "Small Silver",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Poor Silver",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Normal Silver",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Rich Silver",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Silver Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "steel": [
+    {
+      "name": "Steel Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Steel Chain",
+      "yield": 6,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "sterling_silver": [
+    {
+      "name": "Sterling Silver Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "tin": [
+    {
+      "name": "Small Cassiterite",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Poor Cassiterite",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Normal Cassiterite",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Rich Cassiterite",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Tin Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ],
+  "zinc": [
+    {
+      "name": "Small Sphalerite",
+      "yield": 10,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Poor Sphalerite",
+      "yield": 15,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Normal Sphalerite",
+      "yield": 25,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Rich Sphalerite",
+      "yield": 35,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    },
+    {
+      "name": "Zinc Rod",
+      "yield": 50,
+      "uses": [
+        "vessel",
+        "crucible"
+      ]
+    }
+  ]
+}

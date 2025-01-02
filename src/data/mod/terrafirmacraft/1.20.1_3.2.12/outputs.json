@@ -1,0 +1,206 @@
+{
+  "lastUpdated": "2024-12-29",
+  "version": "1.0.0",
+  "schemaVersion": "1",
+  "metals": [
+    {
+      "name": "bismuth"
+    },
+    {
+      "name": "copper"
+    },
+    {
+      "name": "gold"
+    },
+    {
+      "name": "iron"
+    },
+    {
+      "name": "nickel"
+    },
+    {
+      "name": "silver"
+    },
+    {
+      "name": "steel"
+    },
+    {
+      "name": "tin"
+    },
+    {
+      "name": "zinc"
+    }
+  ],
+  "alloys": [
+    {
+      "name": "brass",
+      "components": [
+        {
+          "mineral": "copper",
+          "min": 88.0,
+          "max": 92.0
+        },
+        {
+          "mineral": "zinc",
+          "min": 8.0,
+          "max": 12.0
+        }
+      ]
+    },
+    {
+      "name": "bronze",
+      "components": [
+        {
+          "mineral": "copper",
+          "min": 88.0,
+          "max": 92.0
+        },
+        {
+          "mineral": "tin",
+          "min": 8.0,
+          "max": 12.0
+        }
+      ]
+    },
+    {
+      "name": "black_bronze",
+      "components": [
+        {
+          "mineral": "copper",
+          "min": 50.0,
+          "max": 70.0
+        },
+        {
+          "mineral": "silver",
+          "min": 10.0,
+          "max": 25.0
+        },
+        {
+          "mineral": "gold",
+          "min": 10.0,
+          "max": 25.0
+        }
+      ]
+    },
+    {
+      "name": "bismuth_bronze",
+      "components": [
+        {
+          "mineral": "copper",
+          "min": 50.0,
+          "max": 65.0
+        },
+        {
+          "mineral": "zinc",
+          "min": 20.0,
+          "max": 30.0
+        },
+        {
+          "mineral": "bismuth",
+          "min": 10.0,
+          "max": 20.0
+        }
+      ]
+    },
+    {
+      "name": "red_steel",
+      "components": [
+        {
+          "mineral": "steel",
+          "min": 20.0,
+          "max": 25.0
+        },
+        {
+          "mineral": "black_steel",
+          "min": 50.0,
+          "max": 55.0
+        },
+        {
+          "mineral": "brass",
+          "min": 10.0,
+          "max": 15.0
+        },
+        {
+          "mineral": "rose_gold",
+          "min": 10.0,
+          "max": 15.0
+        }
+      ]
+    },
+    {
+      "name": "rose_gold",
+      "components": [
+        {
+          "mineral": "copper",
+          "min": 15.0,
+          "max": 30.0
+        },
+        {
+          "mineral": "gold",
+          "min": 70.0,
+          "max": 85.0
+        }
+      ]
+    },
+    {
+      "name": "sterling_silver",
+      "components": [
+        {
+          "mineral": "copper",
+          "min": 20.0,
+          "max": 40.0
+        },
+        {
+          "mineral": "silver",
+          "min": 60.0,
+          "max": 80.0
+        }
+      ]
+    },
+    {
+      "name": "weak_blue_steel",
+      "components": [
+        {
+          "mineral": "steel",
+          "min": 20.0,
+          "max": 25.0
+        },
+        {
+          "mineral": "black_steel",
+          "min": 50.0,
+          "max": 55.0
+        },
+        {
+          "mineral": "bismuth_bronze",
+          "min": 10.0,
+          "max": 15.0
+        },
+        {
+          "mineral": "sterling_silver",
+          "min": 10.0,
+          "max": 15.0
+        }
+      ]
+    },
+    {
+      "name": "weak_steel",
+      "components": [
+        {
+          "mineral": "steel",
+          "min": 50.0,
+          "max": 70.0
+        },
+        {
+          "mineral": "black_bronze",
+          "min": 15.0,
+          "max": 25.0
+        },
+        {
+          "mineral": "nickel",
+          "min": 15.0,
+          "max": 25.0
+        }
+      ]
+    }
+  ]
+}
